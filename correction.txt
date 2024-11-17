@@ -1,0 +1,43 @@
+const input_box= document.getElementById("addTodo");
+const listcontainer= document.getElementById("listcontainer");
+
+function calculate(){
+    if(input_box.value==""){
+        alert("You must enter something before submitting");
+    }
+    else{
+        let li= document.createElement('li');
+        li.innerHTML=input_box.value;
+        listcontainer.appendChild(li);
+        let del = document.createElement("button");
+        let edit=  document.createElement("button");
+        edit.innerHTML= "edit";
+        del.innerHTML= "delete";
+        del.addEventListener("click",deleteLi);
+        function deleteLi(e){
+          listcontainer.removeChild(li);
+        }
+        edit.addEventListener("click",editLi);
+        function editLi(e){
+          let input= document.createElement("input");
+          li.appendChild(input)
+          let ok=document.createElement("button");
+          ok.innerHTML= "ok";
+          li.appendChild(ok)
+          ok.addEventListener("click",okLi);
+          function okLi(){
+            li.innerHTML=input.value
+            li.appendChild(edit);
+            li.appendChild(del);
+          }
+        }
+        li.appendChild(edit);
+        li.appendChild(del);
+        
+    }
+    input_box.value=="";
+}
+const submit= document.getElementById("Submit");
+  submit.addEventListener("click",calculate)
+  
+  
